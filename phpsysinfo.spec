@@ -2,12 +2,12 @@
 
 Summary:	PHPSysInfo displays system status 
 Name:		phpsysinfo
-Version:	2.5.3
+Version:	2.5.4
 Release:	%mkrel 1
 Group:		System/Servers
-License:	GPL
+License:	GPLv2+
 URL:		http://phpsysinfo.sourceforge.net/
-Source0:	http://belnet.dl.sourceforge.net/sourceforge/phpsysinfo/%{name}-%{version}.tar.gz
+Source0:	http://ovh.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 Patch0:		phpsysinfo-2.5.2-rc2-mdv_conf.diff
 Requires(pre):  apache-mod_php php-xml lm_sensors
 Requires:       apache-mod_php php-xml lm_sensors
