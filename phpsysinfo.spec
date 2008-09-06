@@ -16,7 +16,7 @@ BuildRequires:	apache-base >= 2.0.54
 BuildArch:	noarch
 Provides:	phpSysInfo = %{version}
 Obsoletes:	phpSysInfo
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 PHPSysInfo is a customizable PHP Script that parses /proc, and formats
