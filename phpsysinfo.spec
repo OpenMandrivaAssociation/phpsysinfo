@@ -3,7 +3,7 @@
 Summary:	PHPSysInfo displays system status 
 Name:		phpsysinfo
 Version:	2.5.4
-Release:	%mkrel 4
+Release:	%mkrel 5
 Group:		System/Servers
 License:	GPLv2+
 URL:		http://phpsysinfo.sourceforge.net/
