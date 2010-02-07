@@ -3,19 +3,19 @@
 Summary:	PHPSysInfo displays system status 
 Name:		phpsysinfo
 Version:	2.5.4
-Release:	%mkrel 5
+Release:	%mkrel 6
 Group:		System/Servers
 License:	GPLv2+
 URL:		http://phpsysinfo.sourceforge.net/
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 Patch0:		phpsysinfo-2.5.2-rc2-mdv_conf.diff
-Requires(pre):  apache-mod_php php-xml lm_sensors
 Requires:       apache-mod_php php-xml lm_sensors
-BuildRequires:	perl
-BuildRequires:	apache-base >= 2.0.54
+Requires(post):   ccp
+%if %mdkversion < 201010
+Requires(post):   rpm-helper
+Requires(postun):   rpm-helper
+%endif
 BuildArch:	noarch
-Provides:	phpSysInfo = %{version}
-Obsoletes:	phpSysInfo
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -44,7 +44,7 @@ find . -type d | xargs chmod 755
 find . -type f | xargs chmod 644
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 install -d %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
 install -d %{buildroot}%{_sysconfdir}/%{name}
@@ -59,39 +59,34 @@ rm -f %{buildroot}/var/www/%{name}/COPYING
 rm -f %{buildroot}/var/www/%{name}/ChangeLog
 rm -f %{buildroot}/var/www/%{name}/README
 
-cat > %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf << EOF
-
+cat > %{buildroot}%{webappconfdir}/%{name}.conf << EOF
 Alias /%{name} /var/www/%{name}
 
 <Directory /var/www/%{name}>
-    Order deny,allow
-    Deny from all
-    Allow from 127.0.0.1
+    Order allow,deny
+    Allow from all
 </Directory>
-
-#<LocationMatch /%{name}>
-#    Options FollowSymLinks
-#    RewriteEngine on
-#    RewriteCond %{SERVER_PORT} !^443$
-#    RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
-#</LocationMatch>
-
 EOF
 
 %post
-ccp --delete --ifexists --set "NoOrphans" --ignoreopt config_version --oldfile %{_sysconfdir}/%{name}/config.php --newfile %{_sysconfdir}/%{name}/config.php.rpmnew
+ccp --delete --ifexists --set "NoOrphans" --ignoreopt config_version \
+    --oldfile %{_sysconfdir}/%{name}/config.php \
+    --newfile %{_sysconfdir}/%{name}/config.php.rpmnew
+%if %mdkversion < 201010
 %_post_webapp
+%endif
 
 %postun
+%if %mdkversion < 201010
 %_postun_webapp
+%endif
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
 %doc COPYING ChangeLog README
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
-%attr(0755,root,root) %dir %{_sysconfdir}/%{name}
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/%{name}/config.php
+%config(noreplace) %{webappconfdir}/%{name}.conf
+%config(noreplace) %{_sysconfdir}/%{name}
 /var/www/%{name}
