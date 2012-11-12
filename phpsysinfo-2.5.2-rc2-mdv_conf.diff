@@ -1,0 +1,46 @@
+diff -Naur phpsysinfo/config.php.new phpsysinfo.oden/config.php.new
+--- phpsysinfo/config.php.new	2006-04-23 17:10:43.000000000 +0200
++++ phpsysinfo.oden/config.php.new	2006-05-14 14:37:47.000000000 +0200
+@@ -54,7 +54,7 @@
+ // $sensor_program = "hwsensors";
+ // $sensor_program = "mbmon";
+ // $sensor_program = "mbm5";
+-$sensor_program = "";
++$sensor_program = "lmsensors";
+ 
+ // show mount point
+ // true = show mount point
+@@ -64,7 +64,7 @@
+ // show bind
+ // true = display filesystems mounted with the bind options under Linux
+ // false = hide them
+-$show_bind = false;
++$show_bind = true;
+ 
+ // show inode usage
+ // true = display used inodes in percent
+@@ -82,7 +82,7 @@
+ // show a graph for current cpuload
+ // true = displayed, but it's a performance hit (because we have to wait to get a value, 1 second)
+ // false = will not be displayed
+-$loadbar = false;
++$loadbar = true;
+ 
+ // additional paths where to look for installed programs
+ // e.g. $addpaths = array('/opt/bin', '/opt/sbin');
+diff -Naur phpsysinfo/index.php phpsysinfo.oden/index.php
+--- phpsysinfo/index.php	2006-04-23 17:10:43.000000000 +0200
++++ phpsysinfo.oden/index.php	2006-05-14 14:39:21.000000000 +0200
+@@ -40,10 +40,10 @@
+   $error->addError('extension_loaded(pcre)', 'phpsysinfo requires the pcre module for php to work', __LINE__, __FILE__);
+ } 
+ 
+-if (!file_exists(APP_ROOT . '/config.php')) {
++if (!file_exists('/etc/phpsysinfo/config.php')) {
+   $error->addError('file_exists(config.php)', 'config.php does not exist in the phpsysinfo directory.', __LINE__, __FILE__);
+ } else { 
+-  require_once(APP_ROOT . '/config.php'); 			// get the config file
++  require_once('/etc/phpsysinfo/config.php'); 			// get the config file
+ }
+ 
+ if ( !empty( $sensor_program ) ) {
