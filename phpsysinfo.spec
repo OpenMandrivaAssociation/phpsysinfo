@@ -90,3 +90,63 @@ rm -rf %{buildroot}
 %config(noreplace) %{webappconfdir}/%{name}.conf
 %config(noreplace) %{_sysconfdir}/%{name}
 /var/www/%{name}
+
+
+%changelog
+* Tue Dec 07 2010 Oden Eriksson <oeriksson@mandriva.com> 2.5.4-7mdv2011.0
++ Revision: 614541
+- the mass rebuild of 2010.1 packages
+
+* Sun Feb 07 2010 Guillaume Rousse <guillomovitch@mandriva.org> 2.5.4-6mdv2010.1
++ Revision: 501754
+- rely on filetrigger for reloading apache configuration begining with 2010.1, rpm-helper macros otherwise
+
+* Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 2.5.4-5mdv2010.0
++ Revision: 430708
+- rebuild
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - rebuild
+
+* Fri Aug 01 2008 Thierry Vignaud <tv@mandriva.org> 2.5.4-4mdv2009.0
++ Revision: 259000
+- rebuild
+
+* Thu Jul 24 2008 Thierry Vignaud <tv@mandriva.org> 2.5.4-3mdv2009.0
++ Revision: 246886
+- rebuild
+
+* Sat Feb 02 2008 Funda Wang <fwang@mandriva.org> 2.5.4-1mdv2008.1
++ Revision: 161426
+- New version 2.5.4
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Sun Aug 19 2007 Oden Eriksson <oeriksson@mandriva.com> 2.5.3-1mdv2008.0
++ Revision: 66589
+- 2.5.3
+- lowercase the package name
+
+
+* Fri Mar 16 2007 Nicolas Lécureuil <neoclust@mandriva.org> 2.5.2-0.rc2.2mdv2007.1
++ Revision: 145029
+- Add XDG menu entry
+- Import phpSysInfo
+
+* Mon May 15 2006 Oden Eriksson <oeriksson@mandriva.com> 2.5.2-0.rc2.1mdk
+- 2.5.2rc2
+- use the webapps policy
+- fix a menuentry
+- add mod_rewrite rules to enforce ssl connections
+- fix deps
+
+* Mon Jun 13 2005 Oden Eriksson <oeriksson@mandriva.com> 2.3-2mdk
+- fix deps
+
+* Tue Aug 24 2004 Oden Eriksson <oden.eriksson@kvikkjokk.net> 2.3-1mdk
+- 2.3 (works with php5-*)
+
