@@ -3,7 +3,7 @@
 Summary:	PHPSysInfo displays system status 
 Name:		phpsysinfo
 Version:	2.5.4
-Release:	%mkrel 7
+Release:	8
 Group:		System/Servers
 License:	GPLv2+
 URL:		http://phpsysinfo.sourceforge.net/
@@ -76,10 +76,6 @@ ccp --delete --ifexists --set "NoOrphans" --ignoreopt config_version \
 %_post_webapp
 %endif
 
-%postun
-%if %mdkversion < 201010
-%_postun_webapp
-%endif
 
 %clean
 rm -rf %{buildroot}
