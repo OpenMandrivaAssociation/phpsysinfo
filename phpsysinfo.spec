@@ -52,7 +52,7 @@ rm -f %{buildroot}/var/www/%{name}/COPYING
 rm -f %{buildroot}/var/www/%{name}/ChangeLog
 rm -f %{buildroot}/var/www/%{name}/README
 
-cat > %{buildroot}%{webappconfdir}/%{name}.conf << EOF
+cat > %{buildroot}%{_webappconfdir}/%{name}.conf << EOF
 Alias /%{name} /var/www/%{name}
 
 <Directory /var/www/%{name}>
@@ -72,7 +72,7 @@ ccp --delete --ifexists --set "NoOrphans" --ignoreopt config_version \
 %files
 %defattr(-,root,root)
 %doc COPYING ChangeLog README
-%config(noreplace) %{webappconfdir}/%{name}.conf
+%config(noreplace) %{_webappconfdir}/%{name}.conf
 %config(noreplace) %{_sysconfdir}/%{name}
 /var/www/%{name}
 
