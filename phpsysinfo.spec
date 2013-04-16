@@ -1,5 +1,3 @@
-%define _requires_exceptions pear(/etc
-
 Summary:	PHPSysInfo displays system status 
 Name:		phpsysinfo
 Version:	2.5.4
@@ -11,12 +9,7 @@ Source0:	http://ovh.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.ta
 Patch0:		phpsysinfo-2.5.2-rc2-mdv_conf.diff
 Requires:       apache-mod_php php-xml lm_sensors
 Requires(post):   ccp
-%if %mdkversion < 201010
-Requires(post):   rpm-helper
-Requires(postun):   rpm-helper
-%endif
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 PHPSysInfo is a customizable PHP Script that parses /proc, and formats
@@ -72,13 +65,9 @@ EOF
 ccp --delete --ifexists --set "NoOrphans" --ignoreopt config_version \
     --oldfile %{_sysconfdir}/%{name}/config.php \
     --newfile %{_sysconfdir}/%{name}/config.php.rpmnew
-%if %mdkversion < 201010
-%_post_webapp
-%endif
 
 
 %clean
-rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
