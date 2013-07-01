@@ -1,4 +1,4 @@
-Summary:	PHPSysInfo displays system status 
+Summary:	Displays system status 
 Name:		phpsysinfo
 Version:	2.5.4
 Release:	9
