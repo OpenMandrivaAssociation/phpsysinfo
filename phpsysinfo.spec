@@ -1,7 +1,7 @@
 Summary:	Displays system status 
 Name:		phpsysinfo
 Version:	2.5.4
-Release:	9
+Release:	10
 Group:		System/Servers
 License:	GPLv2+
 URL:		http://phpsysinfo.sourceforge.net/
@@ -37,7 +37,6 @@ find . -type d | xargs chmod 755
 find . -type f | xargs chmod 644
 
 %install
-rm -rf %{buildroot}
 
 install -d %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
 install -d %{buildroot}%{_sysconfdir}/%{name}
@@ -70,7 +69,6 @@ ccp --delete --ifexists --set "NoOrphans" --ignoreopt config_version \
 %clean
 
 %files
-%defattr(-,root,root)
 %doc COPYING ChangeLog README
 %config(noreplace) %{_webappconfdir}/%{name}.conf
 %config(noreplace) %{_sysconfdir}/%{name}
