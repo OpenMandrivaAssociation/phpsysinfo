@@ -1,7 +1,7 @@
 Summary:	Displays system status 
 Name:		phpsysinfo
 Version:	2.5.4
-Release:	10
+Release:	11
 Group:		System/Servers
 License:	GPLv2+
 URL:		http://phpsysinfo.sourceforge.net/
@@ -55,8 +55,7 @@ cat > %{buildroot}%{_webappconfdir}/%{name}.conf << EOF
 Alias /%{name} /var/www/%{name}
 
 <Directory /var/www/%{name}>
-    Order allow,deny
-    Allow from all
+    Require all granted
 </Directory>
 EOF
 
