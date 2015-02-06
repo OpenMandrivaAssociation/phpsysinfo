@@ -1,7 +1,7 @@
 Summary:	Displays system status 
 Name:		phpsysinfo
 Version:	2.5.4
-Release:	11
+Release:	12
 Group:		System/Servers
 License:	GPLv2+
 URL:		http://phpsysinfo.sourceforge.net/
