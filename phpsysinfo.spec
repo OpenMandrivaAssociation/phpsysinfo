@@ -4,7 +4,7 @@ Version:	2.5.4
 Release:	12
 Group:		System/Servers
 License:	GPLv2+
-URL:		http://phpsysinfo.sourceforge.net/
+URL:		https://phpsysinfo.sourceforge.net/
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 Patch0:		phpsysinfo-2.5.2-rc2-mdv_conf.diff
 Requires:       apache-mod_php php-xml lm_sensors
